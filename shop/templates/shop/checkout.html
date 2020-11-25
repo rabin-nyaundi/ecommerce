@@ -1,0 +1,150 @@
+{% extends 'shop/mainlayout.html' %}
+{% load static %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="box-element">
+                <form id="user" action="" method="post">
+                    <div class="user-info">
+                        <h5><strong>Personal information</strong></h5>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="name" placeholder="Name" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input class="form-control" type="email" name="email" placeholder="Email" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input class="form-control" type="number" name="phone" placeholder="Phone" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="shipping">
+                        <h5><strong>Shipping Information</strong></h5>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="address" placeholder="Address" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" list="countries" name="country" placeholder="Country/State" required>
+                                    <datalist id="countries">
+                                        <option value="Kenya"></option>
+                                        <option value="Uganda"></option>
+                                        <option value="Tanzania"></option>
+                                        <option value="Somalia"></option>
+                                        <option value="Ethiopia"></option>
+                                        <option value="Rwanda"></option>
+                                        <option value="Burundi"></option>
+                                    </datalist>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" list="counties" name="county" placeholder="County/Region" required>
+                                    <datalist id="counties">
+                                        <option value="Mombasa"></option>
+                                        <option value="Kilifi"></option>
+                                        <option value="Kwale"></option>
+                                        <option value="Tana River"></option>
+                                        <option value="Lamu"></option>
+                                        <option value="Taita Taveta"></option>
+                                        <option value="Garisa"></option>
+                                        <option value="Wajir"></option>
+                                        <option value="Mandera"></option>
+                                        <option value="Marsabit"></option>
+                                        <option value="Isiolo"></option>
+                                        <option value="Meru"></option>
+                                        <option value="Tharaka-Nithi"></option>
+                                        <option value="Embu"></option>
+                                        <option value="Kitui"></option>
+                                        <option value="Machakos"></option>
+                                        <option value="Makueni"></option>
+                                        <option value="Nyandarua"></option>
+                                        <option value="Nyeri"></option>
+                                        <option value="Kirinyaga"></option>
+                                        <option value="Murang'a"></option>
+                                        <option value="Kiambu"></option>
+                                        <option value="Kwale"></option>
+                                        <option value="Turkana"></option>
+                                        <option value="West Pokot"></option>
+                                        <option value="Samburu"></option>
+                                        <option value="Tranzoia"></option>
+                                        <option value="Uasin Gishu"></option>
+                                        <option value="Elgeyo Marakwet"></option>
+                                        <option value="Nandi"></option>
+                                        <option value="Baringo"></option>
+                                        <option value="Laikipia"></option>
+                                        <option value="Nakuru"></option>
+                                        <option value="Narok"></option>
+                                        <option value="Kajiado"></option>
+                                        <option value="Kericho"></option>
+                                        <option value="Bomet"></option>
+                                        <option value="Kakamega"></option>
+                                        <option value="Vihiga"></option>
+                                        <option value="Bungoma"></option>
+                                        <option value="Busia"></option>
+                                        <option value="Siaya"></option>
+                                        <option value="Kisumu"></option>
+                                        <option value="Homa Bay"></option>
+                                        <option value="Migori"></option>
+                                        <option value="Kisii"></option>
+                                        <option value="Nyamira"></option>
+                                        <option value="Nairobi"></option>
+                                    </datalist>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="town" placeholder="town" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <button id="btn-submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="box-element">
+                <a href="{% url 'cart' %}" class="btn btn-outline-secondary"><strong>&#x2190; Back to Cart</strong></a>
+                <br>
+                <br> 
+                <hr>
+                <h5>Order summary</h5>
+                <br>
+                <div class="cart-row">
+                    <div style="flex: 2;"><img id="cart-product" src="{% static 'shop/images/cart.png' %}" alt=""></div>
+                    <div style="flex: 2;"><strong>Product 1</strong></div>
+                    <div style="flex: 1;"><strong>x2</strong></div>
+                    <div style="flex: 1;"><strong>$56000</strong></div>
+                </div>
+                <hr>
+
+                <table class="table">
+                    <tr>
+                        <th> Items </th>
+                        <th>Total Amount</th>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>$ 689000</td>
+                    </tr>
+                </table>
+                
+            </div>
+        </div>
+    </div>
+{% endblock content %}
