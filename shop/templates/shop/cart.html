@@ -13,8 +13,8 @@
                         <th>Total Amount</th>
                     </tr>
                     <tr>
-                        <td>6</td>
-                        <td>$ 689000</td>
+                        <td>{{order.get_cart_item}}</td>
+                        <td>$ {{order.get_cart_total}}</td>
                     </tr>
                 </table>
                 <div class="checkout">
@@ -31,19 +31,21 @@
                     <div style="flex: 1;"><strong>Total</strong></div>
                 </div>
 
+                {% for item in items %}
                 <div class="cart-row">
-                    <div style="flex: 2;"><img id="cart-product" src="{% static 'shop/images/cart.png' %}" alt=""></div>
-                    <div style="flex: 2;">Product 1</div>
-                    <div style="flex: 1;">2800</div>
+                    <div style="flex: 2;"><img id="cart-product" src="{{ item.product.imageUrl }}" alt=""></div>
+                    <div style="flex: 2;">{{item.product.name}}</div>
+                    <div style="flex: 1;">Ksh. {{ item.product.price }}</div>
                     <div style="flex: 1;">
-                        <p class="quantity">3</p>
+                        <p class="quantity">{{item.quantity}}</p>
                         <div class="quantity">
-                            <i class="fas fa-sort-up"></i>
-                            <i class="fas fa-sort-down"></i>
+                            <i data-product ="{{item.product.id}}" data-action="add" class="fas fa-sort-up update-cart"></i>
+                            <i data-product ="{{item.product.id}}" data-action="remove" class="fas fa-sort-down update-cart"></i>
                         </div>
                     </div>
-                    <div style="flex: 1;"> 7200</div>
+                    <div style="flex: 1;"> {{ item.getTotal}}</div>
                 </div>
+                {% endfor %}
             </div>
         </div>
     </div>

@@ -13,49 +13,20 @@
             <div class="row" style="padding: 10px; margin: 15px 5px 5px 5px;">
                 {% for product in products %}
                 <div class="col-lg-4" style="padding: 10px; margin: 15px 0px 5px 0px;">
-                    <img class="thumbnail" src="{{ product.product_image.url }}" alt="">
+                    <img class="thumbnail" src="{{ product.imageUrl }}" alt="">
                     <div class="box-element product">
                         <h6>{{product.name}}</h6>
                         <h6>{{product.description}}</h6>
                         <hr>
                         <div class="product-action">
                             <div class="add-cart">
-                                <a href="{% url 'cart' %}" class="btn btn-warning">Add to cart</a>
+                                <button data-product="{{product.id}}" data-action="add" href="{% url 'cart' %}" class="btn btn-warning update-cart">Add to cart</button>
                             </div>
                             <div class="pod-price"><strong>$ {{product.price}}</strong></div>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
-
-                <!-- <div class="col-lg-4">
-                    <img class="thumbnail" src="{% static 'shop/images/cart.png' %}" alt="">
-                    <div class="box-element product">
-                        <h6>Product Name</h6>
-                        <h6>Description</h6>
-                        <hr>
-                        <div class="product-action">
-                            <div class="add-cart">
-                                <a href="{% url 'cart' %}" class="btn btn-warning">Add to cart</a>
-                            </div>
-                            <div class="pod-price"><strong>$ 78900</strong></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <img class="thumbnail" src="{% static 'shop/images/cart.png' %}" alt="">
-                    <div class="box-element product">
-                        <h6>Product Name</h6>
-                        <h6>Description</h6>
-                        <hr>
-                        <div class="product-action">
-                            <div class="add-cart">
-                                <a href="{% url 'cart' %}" class="btn btn-warning">Add to cart</a>
-                            </div>
-                            <div class="pod-price"><strong>$ 78900</strong></div>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>
