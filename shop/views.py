@@ -8,22 +8,26 @@ import json
 
 # Create your views here.
 def index(request):
+    cat = Category.objects.all()
+    products = Product.objects.all()  
+    
     if request.user.is_authenticated:
         user = request.user.customer
         order, created = Order.objects.get_or_create(customer= user, complete=False)
         items = order.orderitem_set.all()
         cartItems = order.get_cart_item
+        
     else:
         items = []
         order = {'get_cart_total': 0, 'get_cart_item':0}
         cartItems = order['get_cart_item']
         
-
-    products = Product.objects.all()    
+      
     return render(request, 'shop/index.html',
     { 
         'products': products,
-        'cartItems': cartItems
+        'cartItems': cartItems,
+        'category' : cat,
     })
 
 def login_view(request):
@@ -43,6 +47,11 @@ def login_view(request):
         
     return render(request,'shop/login.html')
 
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('index'))
+
+
 def cart_view(request):
     if request.user.is_authenticated:
         customer = request.user.customer
@@ -52,7 +61,7 @@ def cart_view(request):
 
     else:
         items : [] 
-    # orderItems = OrderItem.objects.all()
+        
     return render(request, 'shop/cart.html',
     {
         'items' : items,
@@ -61,13 +70,23 @@ def cart_view(request):
     })
 
 def checkout_view(request):
+    
     if request.user.is_authenticated:
         customer = request.user.customer
+        order, created = Order.objects.get_or_create(
+            customer=customer, complete=False)
+        items = order.orderitem_set.all()
+        cartItems = order.get_cart_item
+        
         user = Customer.objects.get(pk=customer.id)
+            
 
     return render(request, 'shop/checkout.html',
     {
-        'user': user
+        'user': user,
+        'items': items,
+        'order': order,
+        'cartItems': cartItems,
     })
 
 def updateItem(request):
@@ -94,3 +113,31 @@ def updateItem(request):
     print('productId:',productId)
     print('action:',action)
     return JsonResponse('Added item', safe=False)
+
+def searchCategory(request, id):
+    cat =  Category.objects.all()
+    products = Product.objects.all().filter(product_cat=id)
+    
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(
+            customer=customer, complete=False)
+        items = order.orderitem_set.all()
+        cartItems = order.get_cart_item
+
+        return render(request, 'shop/index.html',{
+            'category': cat,
+            'products': products,
+            'cartItems': cartItems,
+        })
+        
+    else:
+        items = []
+        order = {'get_cart_total': 0, 'get_cart_item': 0}
+        cartItems = order['get_cart_item']
+        
+        return render(request, 'shop/index.html',{
+            'category': cat,
+            'products': products,
+            'cartItems': cartItems,
+        })

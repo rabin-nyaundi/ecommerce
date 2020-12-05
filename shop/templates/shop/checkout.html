@@ -125,12 +125,14 @@
                 <hr>
                 <h5>Order summary</h5>
                 <br>
+                {% for item in items %}
                 <div class="cart-row">
-                    <div style="flex: 2;"><img id="cart-product" src="{% static 'shop/images/cart.png' %}" alt=""></div>
-                    <div style="flex: 2;"><strong>Product 1</strong></div>
-                    <div style="flex: 1;"><strong>x2</strong></div>
-                    <div style="flex: 1;"><strong>$56000</strong></div>
+                    <div style="flex: 2;"><img id="cart-product" src="{{item.product.imageUrl}}" alt=""></div>
+                    <div style="flex: 2;"><strong>{{item.product.name}}</strong></div>
+                    <div style="flex: 1;"><strong>x{{item.quantity}}</strong></div>
+                    <div style="flex: 1;"><strong>${{item.getTotal}}</strong></div>
                 </div>
+                {% endfor %}
                 <hr>
 
                 <table class="table">
@@ -139,8 +141,8 @@
                         <th>Total Amount</th>
                     </tr>
                     <tr>
-                        <td>6</td>
-                        <td>$ 689000</td>
+                        <td>{{order.get_cart_item}}</td>
+                        <td>$ {{order.get_cart_total}}</td>
                     </tr>
                 </table>
                 

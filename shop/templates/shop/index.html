@@ -4,9 +4,11 @@
     <div class="row">
         <div class="col-lg-3" style="padding: 10px; margin: 55px 0 0 0 ;">
             <ul class="list-group">
-                <li class="list-group-item">Molile</li>
-                <li class="list-group-item">Accessories</li>
-                <li class="list-group-item">Laptops</li>
+            {% for cat in category %}
+                <li class="list-group-item">
+                    <a href="{% url 'searchCategory' cat.id %}">{{cat.category_name}}</a>
+                </li>
+                {% endfor %}
               </ul>
         </div>
         <div class="col-lg-9">
