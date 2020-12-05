@@ -3,11 +3,11 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from .models import *
 from django.http import JsonResponse
+from django.contrib.auth import authenticate, login, logout
 import json
 
 # Create your views here.
 def index(request):
-
     if request.user.is_authenticated:
         user = request.user.customer
         order, created = Order.objects.get_or_create(customer= user, complete=False)
@@ -17,6 +17,7 @@ def index(request):
         items = []
         order = {'get_cart_total': 0, 'get_cart_item':0}
         cartItems = order['get_cart_item']
+        
 
     products = Product.objects.all()    
     return render(request, 'shop/index.html',
@@ -24,6 +25,23 @@ def index(request):
         'products': products,
         'cartItems': cartItems
     })
+
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username = username, password = password)
+        
+        
+        if user is not None:
+            login(request, user)
+            return HttpResponseRedirect(reverse('index'))
+        else:
+            return render(request, 'shop/index.html',{
+                'message': 'Wrong login credentials'
+            })
+        
+    return render(request,'shop/login.html')
 
 def cart_view(request):
     if request.user.is_authenticated:
