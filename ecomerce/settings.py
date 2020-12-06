@@ -89,11 +89,11 @@ DATABASES = {
     
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'shop_db',
-        'USER': 'admin2020',
-        'PASSWORD': 'admin@2020',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': 'ddejob6i3cl339',
+        'USER': 'ugaukwburomqjp',
+        'PASSWORD': '670b40ce717b858132deb9876cf4e623ff7e52cd47fb5d9fdd97e34efaa2a3a5',
+        'HOST': 'ec2-174-129-199-54.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
