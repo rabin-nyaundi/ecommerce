@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '5ayr()5a)ci&-l3av@$f$swjk_y0e8s86)qrqyg9q_lf%xr$6s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['ecomerce-shop.herokuapp.com/', '127.0.0.1']
+ALLOWED_HOSTS = [".herokuapp.com","127.0.0.1"]
 
 
 # Application definition
@@ -82,19 +82,19 @@ WSGI_APPLICATION = 'ecomerce.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-    
     # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'NAME': 'shop_db',
-    #     'USER': 'admin2020',
-    #     'PASSWORD': 'admin@2020',
-    #     'HOST': 'localhost',
-    #     'PORT': '',
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
+    
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'shop_db',
+        'USER': 'admin2020',
+        'PASSWORD': 'admin@2020',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
 }
 
 
@@ -135,15 +135,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+print(STATIC_ROOT)
 
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
-
-# django_heroku.settings(locals())
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR/'static', 'static'), 
+    ]
 
 MEDIA_URL = '/media/'
 
